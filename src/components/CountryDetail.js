@@ -1,5 +1,4 @@
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import "../styles/CountryDetail.css";
 
 const CountryDetail = ({ countries }) => {
@@ -22,6 +21,11 @@ const CountryDetail = ({ countries }) => {
 
   const nativeName = country.name?.nativeName?.common || country.name?.nativeName?.eng?.common;
 
+  const BorderCountryNames = country.borders ? country.borders.map(borderCode => {
+    const borderCountry = countries.find(country => country.cca3 === borderCode);
+    return borderCountry.name.common;
+  }) : [];
+
   return (
     <div className='detailCountry'>
       <Link to="/" className='buttonBack'>
@@ -37,7 +41,7 @@ const CountryDetail = ({ countries }) => {
         <img src={flags.png} alt={name.common} />
         <div>
           <h3>{name.common}</h3>
-          <div>
+          <div className='countryInformation'>
             <div>      
               {nativeName && (
                 <p>
@@ -64,6 +68,19 @@ const CountryDetail = ({ countries }) => {
                 </div>
                 <p><strong>Languages</strong>: {Object.values(languages).join(', ')}</p>
               </div>
+            </div>
+          </div>
+          <div className='bordersCountries'>
+            <p><strong>Border Countries</strong>: </p>
+            <div className='borderList'>
+              {country.borders.map((borderCode, index) => {
+                const borderCountry = countries.find(country => country.cca3 === borderCode);
+                return (
+                  <Link className='CountriesLink' key={index} to={`/country/${borderCountry.cca3}`}>
+                    <p>{borderCountry.name.common}</p>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
