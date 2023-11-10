@@ -21,11 +21,6 @@ const CountryDetail = ({ countries }) => {
 
   const nativeName = country.name?.nativeName?.common || country.name?.nativeName?.eng?.common;
 
-  const BorderCountryNames = country.borders ? country.borders.map(borderCode => {
-    const borderCountry = countries.find(country => country.cca3 === borderCode);
-    return borderCountry.name.common;
-  }) : [];
-
   return (
     <div className='detailCountry'>
       <Link to="/" className='buttonBack'>
@@ -73,13 +68,16 @@ const CountryDetail = ({ countries }) => {
           <div className='bordersCountries'>
             <p><strong>Border Countries</strong>: </p>
             <div className='borderList'>
-              {country.borders.map((borderCode, index) => {
+              {country.borders && country.borders.map((borderCode, index) => {
                 const borderCountry = countries.find(country => country.cca3 === borderCode);
-                return (
-                  <Link className='CountriesLink' key={index} to={`/country/${borderCountry.cca3}`}>
-                    <p>{borderCountry.name.common}</p>
-                  </Link>
-                );
+                if (borderCountry) {
+                  return (
+                    <Link className='CountriesLink' key={index} to={`/country/${borderCountry.cca3}`}>
+                      <p>{borderCountry.name.common}</p>
+                    </Link>
+                  );
+                }
+                return null;
               })}
             </div>
           </div>

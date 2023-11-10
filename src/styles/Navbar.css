@@ -64,4 +64,11 @@
   }
 .dark-mode .darkLoupe, .dark-mode .darkMoon {
     display: none;
-  }
+}
+
+.lightLoupe {
+    display: none;
+}
+.darkLoupe {
+    display: block;
+}
