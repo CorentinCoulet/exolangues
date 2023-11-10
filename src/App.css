@@ -1,0 +1,15 @@
+.App {
+  background: #FAFAFA;
+  font-family: Nunito Sans;
+}
+
+.dark-mode .listSearch, .dark-mode .App, .dark-mode .Searchbar {
+  background-color: #202C36;
+}
+
+.lightLoupe {
+  display: none;
+}
+.darkLoupe {
+  display: block;
+}

@@ -1,0 +1,95 @@
+.detailCountry {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.dark-mode .detailCountry,
+.dark-mode .detailCountry > div,
+.dark-mode .detailCountry div > div {
+    background: #202C36;
+}
+
+.buttonBack {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    text-decoration: none;
+    color: inherit;
+    margin: 2% 0 8% 5%;
+    width: 136px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode .buttonBack {  
+    background-color: #2B3844;
+}
+
+.buttonBack svg {
+    margin-right: 10px;
+}
+
+.detailCountry > div > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.detailCountry > div, .detailCountry > div > div > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.detailCountry h3 {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.detailCountry ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.languesCountry {
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+}
+
+.currencies {
+    display: flex;
+    align-items: center;
+}
+  
+.currencies p {
+    margin-right: 5px;
+}
+  
+.detailCountry img {
+    width: 500px;
+    height: 350px;
+}
+
+.arrowBackDark {
+    display: block;
+}
+
+.arrowBackLight {
+    display: none;
+}
+
+.dark-mode .arrowBackDark {
+    display: none;
+}
+
+.dark-mode .arrowBackLight {
+    display: block;
+}

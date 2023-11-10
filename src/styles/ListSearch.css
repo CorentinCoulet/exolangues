@@ -1,0 +1,94 @@
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+  
+input {
+    border: none;
+    background: #FFF;
+    padding: 5px;
+    margin: 5px 10px;
+}
+  
+h3 {
+    padding: 0 15px;
+}
+  
+.listSearch li {
+    box-sizing: border-box;
+    color: #111517;
+    width: 300px;
+    height: 336px;
+    flex-shrink: 0;
+    margin: 10px;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
+}
+  
+.listSearch li > strong {
+    padding-left: 10px;
+}
+  
+img {
+    width: 300px;
+    height: 160px;
+    flex-shrink: 0;
+    border-radius: 5px 5px 0 0;
+}
+  
+.Searchbar > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 480px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.05);
+}
+  
+.Searchbar svg {
+    padding-left: 20px;
+}
+  
+.Searchbar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.dark-mode .Searchbar > div:first-child {
+    background-color: #2B3844;
+    color: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+}
+  
+.menuRegion {
+    display: flex;
+    flex-direction: column;
+    width: 200px; 
+    height: 56px;
+}
+  
+select {
+    border: none;
+    width: 200px;
+    height: 56px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    background: #FFF;
+    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.05);
+    padding: 0 10px;
+}
+
+.country-link {
+    text-decoration: none;
+    color: inherit;
+}

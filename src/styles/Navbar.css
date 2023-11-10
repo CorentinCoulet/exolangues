@@ -1,0 +1,67 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    flex-shrink: 0;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.navbar > div {
+    color: #111517;
+    font-family: Nunito Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.navbar > button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+    background: #FFF;
+    color: #111517;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.navbar > button > p {
+    padding-left: 5px;
+}
+
+.dark-mode, 
+.dark-mode button, 
+.dark-mode select, 
+.dark-mode div,
+.dark-mode input,
+.dark-mode input::placeholder,
+.dark-mode .country-link h3,
+.dark-mode .country-link li
+ {
+    background-color: #2B3844;
+    color: #FFF;
+}
+
+.lightMoon {
+    display: none;
+}
+
+.darkMoon {
+    display: block;
+}
+
+.dark-mode .lightLoupe, .dark-mode .lightMoon {
+    display: block;
+  }
+.dark-mode .darkLoupe, .dark-mode .darkMoon {
+    display: none;
+  }
