@@ -1,14 +1,22 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import "../styles/CountryDetail.css";
 
 const CountryDetail = ({ countries }) => {
   const { id } = useParams();
-
-  if(countries.length === 0){
-    return <div>Loading ...</div>;
-  }
+  const { location } = useLocation();
 
   const country = countries.find(country => country.cca3 === id);
+
+  useEffect(() => {
+    if (location && location.state && location.state.position) {
+      window.scrollTo(0, location.state.position);
+    }
+  }, [location]);
+
+  if (countries.length === 0) {
+    return <div>Loading ...</div>;
+  }
 
   if (!country) {
     return <div>Country not found</div>;

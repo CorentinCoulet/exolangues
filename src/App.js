@@ -1,8 +1,8 @@
 import { useState, useEffect} from 'react';
 import './App.css';
+import CountryDetail from './components/CountryDetail.js';
 import Navbar from './components/Navbar.js';
 import ListSearch from './components/ListSearch.js';
-import CountryDetail from './components/CountryDetail.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {

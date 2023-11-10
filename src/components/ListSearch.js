@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import '../styles/ListSearch.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ListSearch = ({ countries }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchReg, setSearchReg] =useState('');
+    const navigate = useNavigate();
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -24,6 +25,11 @@ const ListSearch = ({ countries }) => {
         return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    const handleCountryClick = (selectedCountry) => {
+        const currentPosition = window.scrollY;
+        navigate(`/country/${selectedCountry.cca3}`, { state: { position: currentPosition }});
+    };
+    
     return (
     <div className='listSearch'>
         <div className='Searchbar'>
@@ -55,19 +61,21 @@ const ListSearch = ({ countries }) => {
 
         <ul>
             {filteredCountries.length > 0 ? (
-            filteredCountries.map(country => (
-                <Link to={`/country/${country.cca3}`} key={country.cca3} className='country-link'>
-                    <li>
-                        <img src={country.flags.png} alt={country.name.common}/>
-                        <h3>{country.name.common}</h3><br />
-                        <strong>Population</strong>: {formatPopulation(country.population)}<br />
-                        <strong>Region</strong>: {country.region}<br />
-                        <strong>Capital</strong>: {country.capital}<br />
-                    </li>
-                </Link>
-            ))
-            ) : (
-            <p>No matching countries found.</p>
+                filteredCountries.map(country => (
+                    <div key={country.cca3} onClick={() => handleCountryClick(country)}>
+                        <Link to={`/country/${country.cca3}`} className='country-link'>
+                            <li>
+                                <img src={country.flags.png} alt={country.name.common}/>
+                                <h3>{country.name.common}</h3><br />
+                                <strong>Population</strong>: {formatPopulation(country.population)}<br />
+                                <strong>Region</strong>: {country.region}<br />
+                                <strong>Capital</strong>: {country.capital}<br />
+                            </li>
+                        </Link>
+                    </div>
+                ))
+                ) : (
+                <p>No matching countries found.</p>
             )}
         </ul>
     </div>);
