@@ -99,6 +99,19 @@ select {
 .country-link {
     text-decoration: none;
     color: inherit;
+    transition: background-color box-shadow 1s ease;
+}
+
+.country-link:hover {
+    background-color: rgba(56, 55, 55, 0.255);
+    box-shadow: 0 2px 4px rgba(39, 39, 39, 0.1);
+    cursor: pointer;
+}
+
+.dark-mode .country-link:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {

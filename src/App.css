@@ -1,5 +1,6 @@
 .App {
   font-family: Nunito Sans;
+  max-height: 100vh;
 }
 
 .dark-mode .listSearch, .dark-mode .App, .dark-mode .Searchbar {
