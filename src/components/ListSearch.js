@@ -8,27 +8,55 @@ const ListSearch = ({ countries }) => {
     const [searchReg, setSearchReg] =useState('');
     const navigate = useNavigate();
 
+    const getFilterKey = () => {
+        return `scrollPosition-${searchTerm}-${searchReg}`;
+    };
+
     const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
+        const value = e.target.value;
+        setSearchTerm(value);
+        const key = getFilterKey();
+        localStorage.setItem(key, window.scrollY)
+        localStorage.setItem('searchTerm', value);
     }
 
     const handleRegionChange = (e) => {
-        setSearchReg(e.target.value);
+        const value = e.target.value;
+        setSearchReg(value);
+        const key = getFilterKey();
+        localStorage.setItem(key, window.scrollY)
+        localStorage.setItem('searchReg', value);
     }
 
     const handleCountryClick = (selectedCountry) => {
+        const key = getFilterKey();
         const currentPosition = window.scrollY;
-        localStorage.setItem('scrollPosition', currentPosition);
+        localStorage.setItem(key, currentPosition);
         navigate(`/country/${selectedCountry.cca3}`);
     };
 
     useEffect(() => {
-        const previousScrollPosition = localStorage.getItem('scrollPosition');
-        if (previousScrollPosition) {
+        const getFilterKey = () => {
+            return `scrollPosition-${searchTerm}-${searchReg}`;
+        };
+        const savedSearchTerm = localStorage.getItem('searchTerm');
+        const savedSearchReg = localStorage.getItem('searchReg');
+        const key = getFilterKey();
+        const previousScrollPosition = localStorage.getItem(key);
+
+        if (savedSearchTerm) {
+            setSearchTerm(savedSearchTerm);
+        }
+        
+        if (savedSearchReg) {
+            setSearchReg(savedSearchReg);
+        }
+
+        if(previousScrollPosition) {
             window.scrollTo(0, previousScrollPosition);
         }
-    }, []);
 
+    }, [searchTerm, searchReg]);
 
     const filteredCountries = countries.filter(
         country => 
