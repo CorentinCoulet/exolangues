@@ -72,3 +72,12 @@
 .darkLoupe {
     display: block;
 }
+
+@media only screen and (max-width: 400px) {
+    .navbar > div {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 20px;
+    }
+}

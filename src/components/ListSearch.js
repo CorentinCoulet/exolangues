@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ListSearch.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ListSearch = ({ countries }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -15,6 +16,20 @@ const ListSearch = ({ countries }) => {
         setSearchReg(e.target.value);
     }
 
+    const handleCountryClick = (selectedCountry) => {
+        const currentPosition = window.scrollY;
+        localStorage.setItem('scrollPosition', currentPosition);
+        navigate(`/country/${selectedCountry.cca3}`);
+    };
+
+    useEffect(() => {
+        const previousScrollPosition = localStorage.getItem('scrollPosition');
+        if (previousScrollPosition) {
+            window.scrollTo(0, previousScrollPosition);
+        }
+    }, []);
+
+
     const filteredCountries = countries.filter(
         country => 
           country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -24,11 +39,6 @@ const ListSearch = ({ countries }) => {
     const formatPopulation = (population) => {
         return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
-    const handleCountryClick = (selectedCountry) => {
-        const currentPosition = window.scrollY;
-        navigate(`/country/${selectedCountry.cca3}`, { state: { position: currentPosition }});
-    };
     
     return (
     <div className='listSearch'>
@@ -62,17 +72,15 @@ const ListSearch = ({ countries }) => {
         <ul>
             {filteredCountries.length > 0 ? (
                 filteredCountries.map(country => (
-                    <div key={country.cca3} onClick={() => handleCountryClick(country)}>
-                        <Link to={`/country/${country.cca3}`} className='country-link'>
-                            <li>
-                                <img src={country.flags.png} alt={country.name.common}/>
-                                <h3>{country.name.common}</h3><br />
-                                <strong>Population</strong>: {formatPopulation(country.population)}<br />
-                                <strong>Region</strong>: {country.region}<br />
-                                <strong>Capital</strong>: {country.capital}<br />
-                            </li>
-                        </Link>
-                    </div>
+                    <Link key={country.cca3} to={`/country/${country.cca3}`} className='country-link' onClick={() => handleCountryClick(country)}>
+                        <li>
+                            <img src={country.flags.png} alt={country.name.common}/>
+                            <h3>{country.name.common}</h3><br />
+                            <strong>Population</strong>: {formatPopulation(country.population)}<br />
+                            <strong>Region</strong>: {country.region}<br />
+                            <strong>Capital</strong>: {country.capital}<br />
+                        </li>
+                    </Link>
                 ))
                 ) : (
                 <p>No matching countries found.</p>

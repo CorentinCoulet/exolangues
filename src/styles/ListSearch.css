@@ -13,7 +13,7 @@ input {
     margin: 5px 10px;
 }
   
-h3 {
+.listSearch h3 {
     padding: 0 15px;
 }
   
@@ -99,4 +99,21 @@ select {
 .country-link {
     text-decoration: none;
     color: inherit;
+}
+
+@media only screen and (max-width: 800px) {
+    .Searchbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .menuRegion {
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .Searchbar > div:first-child {
+        width: 343px;
+    }
 }

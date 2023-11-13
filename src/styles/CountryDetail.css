@@ -67,7 +67,6 @@
 .currencies {
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .currencies p {
@@ -105,10 +104,6 @@
     width: 100%; 
 }
 
-.borderList, .bordersCountries {
-   align-items: center;
-}
-
 .borderList p {
     display: inline-block;
     border-radius: 2px;
@@ -127,4 +122,34 @@
 .CountriesLink {
     text-decoration: none;
     color: inherit;
+}
+
+@media only screen and (max-width: 1200px) {
+    .detailCountry > div, .detailCountry > div > div > div {
+        display: flex;
+        flex-direction: column;
+    }
+    .detailCountry > div {
+        align-items: center;
+    }
+    .detailCountry > div > div {
+        margin: 10px 0;
+    }
+    .bordersCountries {
+        padding-bottom: 50px;
+    }
+    .countryInformation {
+       display: flex;
+       justify-content: flex-start;
+    }
+    .languesCountry {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .detailCountry img {
+        width: 319.837px;
+        height: 275.924px;
+    }
 }
