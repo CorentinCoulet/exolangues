@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ListSearch.css';
 import { Link } from 'react-router-dom';
 
 const ListSearch = ({ countries }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchReg, setSearchReg] =useState('');
+    const [searchReg, setSearchReg] = useState('');
     const navigate = useNavigate();
 
     const getFilterKey = () => {
@@ -58,11 +58,19 @@ const ListSearch = ({ countries }) => {
 
     }, [searchTerm, searchReg]);
 
-    const filteredCountries = countries.filter(
+    // const filteredCountries = countries.filter(
+    //     country => 
+    //       country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    //       ((searchReg === 'option1') || country.region.toLowerCase().includes(searchReg.toLowerCase()))
+    // );
+
+    const filteredCountries = useMemo(() => {
+        return countries.filter (
         country => 
           country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) &&
           ((searchReg === 'option1') || country.region.toLowerCase().includes(searchReg.toLowerCase()))
-    );
+        );
+    }, [countries, searchTerm, searchReg]);
 
     const formatPopulation = (population) => {
         return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -89,10 +97,11 @@ const ListSearch = ({ countries }) => {
                 <select value={searchReg} onChange={handleRegionChange}>
                     <option value="option1">Filter by Region</option>
                     <option value="Africa">Africa</option>
-                    <option value="America">America</option>
+                    <option value="Americas">Amérique</option>
                     <option value="Asia">Asia</option>
                     <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceanie</option>
+                    <option value="Oceania">Océanie</option>
+                    <option value="Antarctic">Antarctic</option>
                 </select>
             </div>
         </div> 
