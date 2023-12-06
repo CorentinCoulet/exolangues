@@ -1,5 +1,7 @@
 import { useState, useEffect} from 'react';
 import './App.css';
+import { Provider } from 'react-redux';
+import store from './store';
 import CountryDetail from './components/CountryDetail.js';
 import Navbar from './components/Navbar.js';
 import ListSearch from './components/ListSearch.js';
@@ -16,15 +18,17 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route exact path='/' element={<ListSearch countries={countries} />} />
-          <Route path='/country/:id' element={<CountryDetail countries={countries} />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route exact path='/' element={<ListSearch countries={countries} />} />
+            <Route path='/country/:id' element={<CountryDetail countries={countries} />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

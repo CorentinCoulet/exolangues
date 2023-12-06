@@ -1,5 +1,7 @@
 import { useParams, Link} from 'react-router-dom';
 import "../styles/CountryDetail.css";
+import { connect } from 'react-redux';
+import { setCountry } from '../reducers/actions';
 
 const CountryDetail = ({ countries }) => {
   const { id } = useParams();
@@ -87,4 +89,13 @@ const CountryDetail = ({ countries }) => {
   );
 };
 
-export default CountryDetail;
+const mapStateToProps = state => ({
+  country: state.country,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setCountry: country => dispatch(setCountry(country)),
+});
+
+// export default CountryDetail;
+export default connect(mapStateToProps, mapDispatchToProps)(CountryDetail);

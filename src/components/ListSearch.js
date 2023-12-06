@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ListSearch.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setSearchTerm, setSearchRegion } from '../reducers/actions';
 
 const ListSearch = ({ countries }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -126,4 +128,15 @@ const ListSearch = ({ countries }) => {
     </div>);
 }
 
-export default ListSearch;
+const mapStateToProps = state => ({
+    searchTerm: state.search.searchTerm,
+    searchRegion: state.search.searchRegion,
+  });
+  
+  const mapDispatchToProps = dispatch => ({
+    setTerm: term => dispatch(setSearchTerm(term)),
+    setRegion: region => dispatch(setSearchRegion(region)),
+  });
+
+// export default ListSearch;
+export default connect(mapStateToProps, mapDispatchToProps)(ListSearch);
