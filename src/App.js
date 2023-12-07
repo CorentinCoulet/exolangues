@@ -1,7 +1,5 @@
 import { useState, useEffect} from 'react';
 import './App.css';
-import { Provider } from 'react-redux';
-import store from './store';
 import CountryDetail from './components/CountryDetail.js';
 import Navbar from './components/Navbar.js';
 import ListSearch from './components/ListSearch.js';
@@ -18,7 +16,6 @@ function App() {
   }, []);
 
   return (
-    <Provider store={store}>
       <BrowserRouter>
         <div className="App">
           <Navbar />
@@ -28,7 +25,6 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    </Provider>
   );
 }
 
